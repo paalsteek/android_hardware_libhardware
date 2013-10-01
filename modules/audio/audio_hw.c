@@ -406,7 +406,8 @@ static int adev_open(const hw_module_t* module, const char* name,
     adev->device.init_check = adev_init_check;
     adev->device.set_voice_volume = adev_set_voice_volume;
     adev->device.set_master_volume = adev_set_master_volume;
-#ifndef ICS_AUDIO_BLOB
+// Engle, 添加音频兼容性
+#if !defined(ICS_AUDIO_BLOB) && !defined(USES_AUDIO_LEGACY)
     adev->device.get_master_volume = adev_get_master_volume;
     adev->device.set_master_mute = adev_set_master_mute;
     adev->device.get_master_mute = adev_get_master_mute;
@@ -416,7 +417,8 @@ static int adev_open(const hw_module_t* module, const char* name,
     adev->device.get_mic_mute = adev_get_mic_mute;
     adev->device.set_parameters = adev_set_parameters;
     adev->device.get_parameters = adev_get_parameters;
-#ifndef ICS_AUDIO_BLOB
+// Engle, 添加音频兼容性
+#if !defined(ICS_AUDIO_BLOB) && !defined(USES_AUDIO_LEGACY)
     adev->device.get_input_buffer_size = adev_get_input_buffer_size;
     adev->device.open_output_stream = adev_open_output_stream;
     adev->device.open_input_stream = adev_open_input_stream;
